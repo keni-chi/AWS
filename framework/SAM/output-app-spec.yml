@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This is sam test and echo Hello World
+Resources:
+  SamTestHelloWorld:
+    Properties:
+      CodeUri: s3://practice0001-sam/c1a968e3b42ba45240fc0b74b9e8ba35
+      Description: ''
+      Environment:
+        Variables:
+          Test: hoge
+          Test2: fuga
+      Handler: index.handler
+      MemorySize: 256
+      Runtime: nodejs6.10
+      Timeout: 60
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

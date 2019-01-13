@@ -1,0 +1,6 @@
+bucketの新規作成
+aws s3 mb s3://practice0001-sam
+
+aws cloudformation package --template-file app-spec.yml --output-template-file output-app-spec.yml --s3-bucket practice0001-sam
+
+aws cloudformation deploy --template-file output-app-spec.yml --stack-name tagname --capabilities CAPABILITY_IAM

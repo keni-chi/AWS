@@ -1,0 +1,9 @@
+set HTTP_PROXY=http://{ip}:{port}
+set HTTPS_PROXY=http://{ip}:{port}
+pip install chalice
+
+chalice new-project demo
+cd demo
+chalice deploy
+curl https://{xxxxx}.execute-api.ap-northeast-1.amazonaws.com/api/
+
