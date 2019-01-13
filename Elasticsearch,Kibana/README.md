@@ -1,7 +1,8 @@
 # Elasticsearch
 
 ## 概要
-以下、やってみたこと。
+「ElasticSearch+Kibanaによる見える化」、「 ElasticSearchへの書き込み(python, ログツール)」、「Twitterからのデータ収集」を実施した。
+Twitterからのデータ収集については、S3保存も別途実施した。（たしかTwitterのAPIでは過去2週間くらいしかデータ取得できない）
 logstashかfluentdでどちらかまたは両方で構築して動作させたが、忘れた。
 
 - Elasticsearch
