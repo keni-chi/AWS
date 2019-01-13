@@ -7,3 +7,4 @@
 
 - DynamoDBのテンプレートを作成。デプロイおよびアンデプロイ用のMakefileを作成。
 
+- troposphereを使ってテンプレート生成。
