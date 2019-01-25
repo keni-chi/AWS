@@ -1,0 +1,7 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - pip install chalice
+      - pip install boto3
+      - chalice deploy
