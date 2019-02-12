@@ -1,0 +1,11 @@
+{
+    "pk": "pk_v",
+    "sk": "sk_v",
+    "at1": 1,
+    "at2": "at2_v",
+    "at3": {
+        "plot": "dummy",
+        "rating": 10,
+        "actors": []
+    }
+}
