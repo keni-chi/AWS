@@ -1,0 +1,45 @@
+﻿START RequestId: 57f54452-480e-529e-8feb-10a7a99af651 Version: $LATEST
+output--------------------start
+Output-start: 2019-03-03T14:06:27.792855Z
+[ERROR] KeyError: 'b'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 12, in lambda_handler
+    y = x['b'] #エラー発生
+END RequestId: 57f54452-480e-529e-8feb-10a7a99af651
+REPORT RequestId: 57f54452-480e-529e-8feb-10a7a99af651	Duration: 36.41 ms	Billed Duration: 100 ms Memory Size: 128 MB	Max Memory Used: 63 MB	
+START RequestId: 996ff063-75ec-5427-85f0-a49694482e8b Version: $LATEST
+output--------------------start
+Output-start: 2019-03-03T14:06:36.648936Z
+[ERROR] KeyError: 'b'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 12, in lambda_handler
+    y = x['b'] #エラー発生
+END RequestId: 996ff063-75ec-5427-85f0-a49694482e8b
+REPORT RequestId: 996ff063-75ec-5427-85f0-a49694482e8b	Duration: 35.29 ms	Billed Duration: 100 ms Memory Size: 128 MB	Max Memory Used: 63 MB	
+START RequestId: 21860f69-1ac0-5e9a-b96e-5b9cfb66f9ce Version: $LATEST
+output--------------------start
+Output-start: 2019-03-03T14:06:46.737814Z
+[ERROR] KeyError: 'b'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 12, in lambda_handler
+    y = x['b'] #エラー発生
+END RequestId: 21860f69-1ac0-5e9a-b96e-5b9cfb66f9ce
+REPORT RequestId: 21860f69-1ac0-5e9a-b96e-5b9cfb66f9ce	Duration: 30.72 ms	Billed Duration: 100 ms Memory Size: 128 MB	Max Memory Used: 63 MB	
+START RequestId: cae6c6b8-ef79-5ad9-a700-924d0ecced8d Version: $LATEST
+output--------------------start
+Output-start: 2019-03-03T14:06:56.181698Z
+[ERROR] KeyError: 'b'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 12, in lambda_handler
+    y = x['b'] #エラー発生
+END RequestId: cae6c6b8-ef79-5ad9-a700-924d0ecced8d
+REPORT RequestId: cae6c6b8-ef79-5ad9-a700-924d0ecced8d	Duration: 7.12 ms	Billed Duration: 100 ms Memory Size: 128 MB	Max Memory Used: 63 MB	
+START RequestId: f12ed855-e842-533b-bfca-8ca009824997 Version: $LATEST
+output--------------------start
+Output-start: 2019-03-03T14:07:07.288215Z
+[ERROR] KeyError: 'b'
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 12, in lambda_handler
+    y = x['b'] #エラー発生
+END RequestId: f12ed855-e842-533b-bfca-8ca009824997
+REPORT RequestId: f12ed855-e842-533b-bfca-8ca009824997	Duration: 4.60 ms	Billed Duration: 100 ms Memory Size: 128 MB	Max Memory Used: 63 MB	
