@@ -1,18 +1,18 @@
 # APIGateway
 
-## �T�v
-Lambda��validate���������Ȃ��Ă�APIGateway�Ń��f�����쐬����Ύ����s�v�Ȃ��Ƃ𒲍������B
-Swagger��p�����f�[�^��export/import�Ȃǂ��������B
+## 概要
+Lambdaでvalidateを実装しなくてもAPIGatewayでモデルを作成すれば実装不要なことを調査した。
+Swaggerを用いたデータのexport/importなども試した。
 
-- ���؂̐ݒ���@
-API Swagger ��`���C���|�[�g���Ċ�{�I�ȃ��N�G�X�g�̌��؂�ݒ肷��
-API Gateway REST API ���g�p���ă��N�G�X�g�̌��؂�ݒ肷��
-API Gateway �R���\�[�����g�p���Ċ�{�I�ȃ��N�G�X�g�̌��؂�ݒ肷��
+- 検証の設定方法
+API Swagger 定義をインポートして基本的なリクエストの検証を設定する
+API Gateway REST API を使用してリクエストの検証を設定する
+API Gateway コンソールを使用して基本的なリクエストの検証を設定する
 
-- API Gateway �Ń��f�����쐬����
-API Gateway �R���\�[�����g�p���ă��f�����쐬����
+- API Gateway でモデルを作成する
+API Gateway コンソールを使用してモデルを作成する
 
-- ���f���쐬��
+- モデル作成例
 {
   "title": "controllersIdModel",
   "type": "object",
