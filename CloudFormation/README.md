@@ -1,10 +1,10 @@
 # Cloudformation
 
-## ŠT—v
-ˆÈ‰º‚È‚Ç‚ðs‚Á‚½B
+## æ¦‚è¦
+ä»¥ä¸‹ãªã©ã‚’è¡Œã£ãŸã€‚
 
-- cloudformer‚Åƒeƒ“ƒvƒŒ[ƒgƒŠƒo[ƒXB
+- cloudformerã§ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒªãƒãƒ¼ã‚¹ã€‚
 
-- DynamoDB‚Ìƒeƒ“ƒvƒŒ[ƒg‚ðì¬BƒfƒvƒƒC‚¨‚æ‚ÑƒAƒ“ƒfƒvƒƒC—p‚ÌMakefile‚ðì¬B
+- DynamoDBã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ä½œæˆã€‚ãƒ‡ãƒ—ãƒ­ã‚¤ãŠã‚ˆã³ã‚¢ãƒ³ãƒ‡ãƒ—ãƒ­ã‚¤ç”¨ã®Makefileã‚’ä½œæˆã€‚
 
-- troposphere‚ðŽg‚Á‚Äƒeƒ“ƒvƒŒ[ƒg¶¬B
+- troposphereã‚’ä½¿ã£ã¦ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆç”Ÿæˆã€‚
