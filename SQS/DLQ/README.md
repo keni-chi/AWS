@@ -22,3 +22,53 @@ DLQを設定せずに動作確認を行う。
 
 - 結果  
 「メッセージ保持期間」の間リトライをし続けた。
+
+
+### 検証3
+- 前提
+複数メッセージをSQSに積む。  
+
+- 結果1
+SQSトリガーのバッチサイズの設定を1にすると、lambdaが同時起動して並列で各メッセージを処理。
+
+- 結果2
+SQSトリガーのバッチサイズの設定を1より大きくすると、lambdaが複数メッセージを取得する場合がある。
+
+
+
+{
+  "Records": [
+    {
+      "messageId": "xxxxx",
+      "receiptHandle": "xxxxx",
+      "body": "msg_3",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "xxxxx",
+        "SenderId": "YYYYY",
+        "ApproximateFirstReceiveTimestamp": "YYYYY"
+      },
+      "messageAttributes": {},
+      "md5OfBody": "xxxxx",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "xxxxx",
+      "awsRegion": "ap-northeast-1"
+    },
+    {
+      "messageId": "xxxxx",
+      "receiptHandle": "xxxxx",
+      "body": "msg_1",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "xxxxx",
+        "SenderId": "YYYYY",
+        "ApproximateFirstReceiveTimestamp": "YYYYY"
+      },
+      "messageAttributes": {},
+      "md5OfBody": "xxxxx",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "xxxxx",
+      "awsRegion": "ap-northeast-1"
+    }
+  ]
+}
