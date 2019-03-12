@@ -13,10 +13,12 @@ API Gateway コンソールを使用して基本的なリクエストの検証�
 API Gateway コンソールを使用してモデルを作成する
 
 - モデル作成例
+```
 {
-  "title": "controllersIdModel",
-  "type": "object",
-  "properties": {
-    "Status": { "type": "string", "enum": ["dog", "cat"] }
-  }
+    "title": "controllersIdModel",
+    "type": "object",
+    "properties": {
+      "Status": { "type": "string", "enum": ["dog", "cat"] }
+    }
 }
+```
