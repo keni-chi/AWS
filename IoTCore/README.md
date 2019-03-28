@@ -51,3 +51,4 @@ IAMポリシー内容の例
 ## 参考
 [ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)  
 [自前の証明書を使用する](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/device-certs-your-own.html)  
+[AWS サービスの直接呼び出しの承認](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/authorizing-direct-aws.html)  
