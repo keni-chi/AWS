@@ -49,3 +49,4 @@ IAMポリシー内容の例
 ```
 
 ## 参考
+[ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)  
