@@ -49,19 +49,19 @@ IAMポリシー内容の例
 ```
 
 ## JITR
-[AWS IoT 証明書のJust In Time登録](https://qiita.com/TakashiKOYANAGAWA/items/b3b679e2a7d56f144a8e)  
+[AWS IoT 証明書のJust In Time登録](https://qiita.com/TakashiKOYANAGAWA/items/b3b679e2a7d56f144a8e)   
 
-### registration codeを取得
-- ここで取得する registration codeをCAのCN(Common Name)で利用。
-  - aws iot get-registration-code
+### registration codeを取得  
+- ここで取得する registration codeをCAのCN(Common Name)で利用。  
+  - aws iot get-registration-code  
 
 ### 認証局
-- 秘密鍵(CAroot.key)
-openssl genrsa -out CAroot.key 2048
-- 証明書(CAroot.pem)
-openssl req -x509 -new -nodes -key CAroot.key -sha256 -days 365 -out CAroot.pem
-- 参考
-  - 秘密鍵の確認
+- 秘密鍵(CAroot.key)  
+openssl genrsa -out CAroot.key 2048  
+- 証明書(CAroot.pem)  
+openssl req -x509 -new -nodes -key CAroot.key -sha256 -days 365 -out CAroot.pem  
+- 参考  
+  - 秘密鍵の確認  
     - openssl rsa -in CAroot.key -text  
 
 ### 中間証明書(プライベートキー検証証明書)
@@ -73,8 +73,8 @@ openssl req -new -key Verify.key -out Verify.csr
 openssl x509 -req -in Verify.csr -CA CAroot.pem -CAkey CAroot.key -CAcreateserial -out Verify.crt -days 365 -sha256  
 証明書=署名付き公開鍵。公開鍵が誰の公開鍵であるかを証明している。  
 CAroot.srlは、CA（認証局）が使用するシリアルナンバーのファイル。  
-- 参考
-  - 証明書の内容をテキストで表示する
+- 参考  
+  - 証明書の内容をテキストで表示する  
     - openssl x509 -noout -text -in Verify.crt  
 
 ### 作成したルート証明書、中間証明書をAWS IoTへ登録(JITR)
@@ -90,9 +90,9 @@ openssl genrsa -out deviceCert.key 2048
 - 証明書署名要求(deviceCert.csr)  
 openssl req -new -key deviceCert.key -out deviceCert.csr  
 - 証明書(署名の実行)(deviceCert.crt)  
-openssl x509 -req -in deviceCert.csr -CA ../CA/CAroot.pem -CAkey ../CA/CAroot.key -CAcreateserial -out deviceCert.crt -days 365 -sha256  
-- Just in Timeで利用する証明書を作成
-cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
+openssl x509 -req -in deviceCert.csr -CA ../CA/CAroot.pem -CAkey ../CA/CAroot.key -CAcreateserial -out deviceCert.crt -days 365 -sha256   
+- Just in Timeで利用する証明書を作成  
+cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt  
 
 
 ## JITP
@@ -101,26 +101,26 @@ cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
 [ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)    
 
 ### CA 証明書を作成
-openssl genrsa -out rootCA.key 2048  
-openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+openssl genrsa -out rootCA.key 2048   
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem  
 
 ### CA 証明書の登録
-aws iot get-registration-code
-openssl genrsa -out verificationCert.key 2048
-openssl req -new -key verificationCert.key -out verificationCert.csr  (Common Nameに「registration-code」を入力)
-openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out verificationCert.pem -days 500 -sha256
+aws iot get-registration-code  
+openssl genrsa -out verificationCert.key 2048  
+openssl req -new -key verificationCert.key -out verificationCert.csr  (Common Nameに「registration-code」を入力)  
+openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out verificationCert.pem -days 500 -sha256  
 
-aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp-template.json
+aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp-template.json  
 
 ### CA 証明書を使用してデバイス証明書を作成する
-openssl genrsa -out deviceCert.key 2048
-openssl req -new -key deviceCert.key -out deviceCert.csr  (Common Nameに「thingName」を入力)
-openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.crt -days 500 -sha256
-cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt
+openssl genrsa -out deviceCert.key 2048  
+openssl req -new -key deviceCert.key -out deviceCert.csr  (Common Nameに「thingName」を入力)  
+openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.crt -days 500 -sha256  
+cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt  
 
 ### 動作確認
-- endPointを調べる
-  aws iot describe-endpoint
+- endPointを調べる  
+  aws iot describe-endpoint  
 <!-- - amazon linuxにmosquiito_clientを入れるには、以下のコマンドを実行
   sudo curl http://download.opensuse.org/repositories/home:/oojah:/mqtt/CentOS_CentOS-6/home:oojah:mqtt.repo -o /etc/yum.repos.d/mqtt.repo
   sudo yum install -y mosquitto-clients mosquitto
