@@ -48,7 +48,7 @@ IAMポリシー内容の例
 }
 ```
 
-## 方法１
+## JITR
 [AWS IoT 証明書のJust In Time登録](https://qiita.com/TakashiKOYANAGAWA/items/b3b679e2a7d56f144a8e)  
 
 ### registration codeを取得
@@ -95,7 +95,7 @@ openssl x509 -req -in deviceCert.csr -CA ../CA/CAroot.pem -CAkey ../CA/CAroot.ke
 cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
 
 
-## 方法２
+## JITP
 [自前の証明書を使用する](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/device-certs-your-own.html)  
 [Setting Up Just-in-Time Provisioning with AWS IoT Core](https://aws.amazon.com/jp/blogs/iot/setting-up-just-in-time-provisioning-with-aws-iot-core/)    
 [ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)    
