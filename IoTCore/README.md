@@ -97,6 +97,8 @@ cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
 
 ## 方法２
 [自前の証明書を使用する](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/device-certs-your-own.html)  
+[Setting Up Just-in-Time Provisioning with AWS IoT Core](https://aws.amazon.com/jp/blogs/iot/setting-up-just-in-time-provisioning-with-aws-iot-core/)    
+[ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)    
 
 ### CA 証明書を作成
 openssl genrsa -out rootCA.key 2048  
@@ -108,28 +110,18 @@ openssl genrsa -out verificationCert.key 2048
 openssl req -new -key verificationCert.key -out verificationCert.csr  (Common Nameに「registration-code」を入力)
 openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out verificationCert.pem -days 500 -sha256
 
-<!-- aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem   -->
-aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp.json
-<!-- aws iot update-ca-certificate --certificate-id $YOUR_CA_CERT_ID --new-status ACTIVE    -->
+aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp-template.json
 
 ### CA 証明書を使用してデバイス証明書を作成する
 openssl genrsa -out deviceCert.key 2048
 openssl req -new -key deviceCert.key -out deviceCert.csr  (Common Nameに「thingName」を入力)
-<!-- openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.pem -days 500 -sha256 -->
 openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.crt -days 500 -sha256
 cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt
-
-<!-- aws iot register-certificate --certificate-pem file://deviceCert.pem --ca-certificate-pem file://rootCA.pem
-aws iot update-certificate --certificate-id xxxxxxxxxxx --new-status ACTIVE -->
-
-<!-- ### デバイス証明書の自動/ジャストインタイム登録の使用
-aws iot update-ca-certificate --certificate-id caCertificateId --new-auto-registration-status ENABLE
-aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://privateKeyVerificationCert.crt --allow-auto-registration   -->
 
 ### 動作確認
 - endPointを調べる
   aws iot describe-endpoint
-- amazon linuxにmosquiito_clientを入れるには、以下のコマンドを実行
+<!-- - amazon linuxにmosquiito_clientを入れるには、以下のコマンドを実行
   sudo curl http://download.opensuse.org/repositories/home:/oojah:/mqtt/CentOS_CentOS-6/home:oojah:mqtt.repo -o /etc/yum.repos.d/mqtt.repo
   sudo yum install -y mosquitto-clients mosquitto
 - publishする
@@ -143,13 +135,9 @@ aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verificatio
         "certificateStatus": "PENDING_ACTIVATION",
         "awsAccountId": "awsAccountId",
         "certificateRegistrationTimestamp": "certificateRegistrationTimestamp"
-      }
+      } -->
 
 
 ## 参考
-[AWS IoT 証明書のJust In Time登録](https://qiita.com/TakashiKOYANAGAWA/items/b3b679e2a7d56f144a8e)  
 [RSA鍵、証明書のファイルフォーマットについて](https://qiita.com/kunichiko/items/12cbccaadcbf41c72735)
-[ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)  
-[自前の証明書を使用する](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/device-certs-your-own.html)  
 [AWS サービスの直接呼び出しの承認](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/authorizing-direct-aws.html)  
-[Setting Up Just-in-Time Provisioning with AWS IoT Core](https://aws.amazon.com/jp/blogs/iot/setting-up-just-in-time-provisioning-with-aws-iot-core/)
