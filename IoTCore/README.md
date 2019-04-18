@@ -77,7 +77,7 @@ CAroot.srlは、CA（認証局）が使用するシリアルナンバーのフ�
   - 証明書の内容をテキストで表示する  
     - openssl x509 -noout -text -in Verify.crt  
 
-### 作成したルート証明書、中間証明書をAWS IoTへ登録(JITR)
+### 作成したルート証明書、中間証明書をAWS IoTへ登録
 - 証明書をAWS IoTへ登録  
 aws iot register-ca-certificate --ca-certificate file://CAroot.pem --verification-certificate file://Verify.crt  
 - statusとautoRegistrationStatusが有効化されていないので、これらを以下のコマンド有効にする。  
@@ -107,10 +107,10 @@ cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
 >>はコンソール出力の例を示す。
 
 ### クラウド構築
-ロールを作成
-IoTポリシーを作成
-ロールエイリアスを作成
-マネージメントコンソールで初期認証APIのAPIGatewayへ移動し、IAM認証を有効化。デプロイする。
+ロールを作成  
+IoTポリシーを作成  
+ロールエイリアスを作成  
+マネージメントコンソールで初期認証APIのAPIGatewayへ移動し、IAM認証を有効化。デプロイする。  
 
 ### CA 証明書を作成
 openssl genrsa -out rootCA.key 2048
@@ -126,7 +126,7 @@ aws iot get-registration-code
 openssl genrsa -out verificationCert.key 2048
 >verificationCert.key
 
-openssl req -new -key verificationCert.key -out verificationCert.csr
+openssl req -new -key verificationCert.key -out verificationCert.csr  
 Common Name (eg, your name or your server's hostname) []:xxxxxxxx
 >verificationCert.csr
 
@@ -137,7 +137,7 @@ openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAc
 >rootCA.srl  
 >verificationCert.pem  
 
-provisioning-template.jsonを準備
+provisioning-template.jsonを準備  
 
 aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp-template.json  
 注意: CA証明書は10個まで登録可能  
