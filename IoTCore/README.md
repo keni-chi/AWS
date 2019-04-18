@@ -4,8 +4,8 @@
 覚書である。IoTcoreについて記載する。
 
 ## 手動設定
-1. IAMポリシーを作成しておく。  
-IAMポリシー内容の例
+1. IAMロールを作成しておく。  
+IAMロール内容の例
 ```
 {
     "Version": "2012-10-17",
@@ -164,7 +164,7 @@ cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt
 
 
 ### ロール取得
-aws iot describe-endpoint --endpoint-type iot:CredentialProvider
+aws iot describe-endpoint --endpoint-type iot:CredentialProvider  
 >> "endpointAddress": "aaaaaaaaaaaaa.credentials.iot.ap-northeast-1.amazonaws.com"
 
 ローカルPCへ証明書をダウンロード(deviceCert.key, deviceCertAndCACert.crtが必要。)  
@@ -180,7 +180,7 @@ Postmanを起動し、以下の通り設定。
 
   ・TYPEで「AWS Signature」を選択。  
   ・URL  
-  https://ggggggg
+  https://ggggggg  
   POST  
   ・ヘッダの設定  
   Content-Type   application/json  
