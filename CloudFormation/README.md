@@ -20,6 +20,10 @@ SourceSecurityGroupName: !GetAtt myELB.SourceSecurityGroup.GroupName
 
 #### Fn::ImportValue
 別のスタックによってエクスポートされた出力の値を返します。この関数は通常、クロススタック参照を作成するために使用されます。次のサンプルテンプレートスニペットでは、スタック A は VPC セキュリティグループ値をエクスポートし、スタック B はそれをインポートします。
+```
+Fn::ImportValue:
+  !Sub "${NetworkStackName}-SecurityGroupID"
+```
 
 #### Fn::Sub
 特定した値の入力文字列にある変数の代わりになります。テンプレートで、スタックを作成または更新するまで使用できない値を含むコマンドまたは出力を作成するために、この関数を使用できます。
