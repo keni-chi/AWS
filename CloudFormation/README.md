@@ -14,6 +14,9 @@
 
 #### Fn::GetAtt
 テンプレートのリソースから属性の値を返します。
+```
+SourceSecurityGroupName: !GetAtt myELB.SourceSecurityGroup.GroupName
+```
 
 #### Fn::ImportValue
 別のスタックによってエクスポートされた出力の値を返します。この関数は通常、クロススタック参照を作成するために使用されます。次のサンプルテンプレートスニペットでは、スタック A は VPC セキュリティグループ値をエクスポートし、スタック B はそれをインポートします。
