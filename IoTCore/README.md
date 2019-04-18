@@ -100,42 +100,102 @@ cat deviceCert.crt ../CA/CAroot.pem > deviceCertAndCA.crt
 [Setting Up Just-in-Time Provisioning with AWS IoT Core](https://aws.amazon.com/jp/blogs/iot/setting-up-just-in-time-provisioning-with-aws-iot-core/)    
 [ジャストインタイムのプロビジョニング](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/jit-provisioning.html)    
 
+＜凡例＞
+
+>はファイルシュル直の例を示す。  
+
+>>はコンソール出力の例を示す。
+
+### クラウド構築
+ロールを作成
+IoTポリシーを作成
+ロールエイリアスを作成
+マネージメントコンソールで初期認証APIのAPIGatewayへ移動し、IAM認証を有効化。デプロイする。
+
 ### CA 証明書を作成
-openssl genrsa -out rootCA.key 2048   
-openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem  
+openssl genrsa -out rootCA.key 2048
+>rootCA.key
+
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+>rootCA.pem
 
 ### CA 証明書の登録
-aws iot get-registration-code  
-openssl genrsa -out verificationCert.key 2048  
-openssl req -new -key verificationCert.key -out verificationCert.csr  (Common Nameに「registration-code」を入力)  
-openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out verificationCert.pem -days 500 -sha256  
+aws iot get-registration-code
+>> "registrationCode": "xxxxxxxx"
+
+openssl genrsa -out verificationCert.key 2048
+>verificationCert.key
+
+openssl req -new -key verificationCert.key -out verificationCert.csr
+Common Name (eg, your name or your server's hostname) []:xxxxxxxx
+>verificationCert.csr
+
+openssl x509 -req -in verificationCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out verificationCert.pem -days 500 -sha256
+>>Signature ok  
+>>subject=/C=XX/L=Default City/O=Default Company Ltd/CN=xxxxxxxx  
+>>Getting CA Private Key  
+>rootCA.srl  
+>verificationCert.pem  
+
+provisioning-template.jsonを準備
 
 aws iot register-ca-certificate --ca-certificate file://rootCA.pem --verification-cert file://verificationCert.pem --set-as-active --allow-auto-registration --registration-config file://jitp-template.json  
+注意: CA証明書は10個まで登録可能  
+>>"certificateArn": "arn:aws:iot:ap-northeast-1:yyyyy",  
+>>"certificateId": "zzzzzzz"
+
 
 ### CA 証明書を使用してデバイス証明書を作成する
-openssl genrsa -out deviceCert.key 2048  
-openssl req -new -key deviceCert.key -out deviceCert.csr  (Common Nameに「thingName」を入力)  
-openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.crt -days 500 -sha256  
-cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt  
+openssl genrsa -out deviceCert.key 2048
+>deviceCert.key
 
-### 動作確認
-- endPointを調べる  
-  aws iot describe-endpoint  
-<!-- - amazon linuxにmosquiito_clientを入れるには、以下のコマンドを実行
-  sudo curl http://download.opensuse.org/repositories/home:/oojah:/mqtt/CentOS_CentOS-6/home:oojah:mqtt.repo -o /etc/yum.repos.d/mqtt.repo
-  sudo yum install -y mosquitto-clients mosquitto
-- publishする
-  mosquitto_pub --cafile root.cert --cert deviceCertAndCACert.crt --key deviceCert.key -h <prefix>.iot.us-east-1.amazonaws.com -p 8883 -q 1 -t foo/bar -I anyclientID --tls-version tlsv1.2 -m "Hello" -d
-  以下にpublishされる
-    $aws/events/certificates/registered/caCertificateID
-      {
-        "certificateId": "certificateID",
-        "caCertificateId": "caCertificateId",
-        "timestamp": timestamp,
-        "certificateStatus": "PENDING_ACTIVATION",
-        "awsAccountId": "awsAccountId",
-        "certificateRegistrationTimestamp": "certificateRegistrationTimestamp"
-      } -->
+openssl req -new -key deviceCert.key -out deviceCert.csr
+Common Name (eg, your name or your server's hostname) []:testThingxxxx
+>deviceCert.csr
+
+openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out deviceCert.crt -days 500 -sha256
+>>Signature ok
+>>subject=/C=XX/L=Default City/O=Default Company Ltd/CN=testThingxxxx
+>>Getting CA Private Key
+>deviceCert.crt
+
+cat deviceCert.crt rootCA.pem > deviceCertAndCACert.crt
+>deviceCertAndCACert.crt
+
+
+### ロール取得
+aws iot describe-endpoint --endpoint-type iot:CredentialProvider
+>> "endpointAddress": "aaaaaaaaaaaaa.credentials.iot.ap-northeast-1.amazonaws.com"
+
+ローカルPCへ証明書をダウンロード(deviceCert.key, deviceCertAndCACert.crtが必要。)  
+
+curl -v --cert deviceCertAndCACert.crt --key deviceCert.key -H "x-amzn-iot-thingname: testThinga01" https://aaaaaaaaaaaaa.credentials.iot.ap-northeast-1.amazonaws.com/role-aliases/bbbbbbbbb/credentials  
+
+>>正常  
+>>{"credentials":{"accessKeyId":"ccccccccccccc","secretAccessKey":"dddddddddd","sessionToken":"eeeeeeeeee","expiration":"fffffff"}}
+
+
+## APIアクセス
+Postmanを起動し、以下の通り設定。  
+
+  ・TYPEで「AWS Signature」を選択。  
+  ・URL  
+  https://ggggggg
+  POST  
+  ・ヘッダの設定  
+  Content-Type   application/json  
+  Bodyの設定
+  ```
+  {
+    "hhhh": "iiiii"
+  }
+  ```
+  ・認証情報の設定  
+  AccessKey　レスポンス値を入力。  
+  SecretKey　レスポンス値を入力。  
+  AWS Region　ap-northeast-1  
+  (Service Name　execute-api)  
+  Session Token　レスポンス値を入力。
 
 
 ## 参考
