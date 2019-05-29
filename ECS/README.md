@@ -19,4 +19,5 @@
 		```
 
 ## 参考
-[ECS運用のノウハウ](https://qiita.com/naomichi-y/items/d933867127f27524686a)
+[ECS運用のノウハウ](https://qiita.com/naomichi-y/items/d933867127f27524686a)  
+[AWSECSを利用し、コンテナのログをCloudWatch Logsへ出力する](https://dev.classmethod.jp/cloud/aws/ecs-cloudwatch-logs/)
