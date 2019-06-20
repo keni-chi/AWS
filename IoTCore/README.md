@@ -198,6 +198,8 @@ Postmanを起動し、以下の通り設定。
   Session Token　レスポンス値を入力。
 
 
+
 ## 参考
 [RSA鍵、証明書のファイルフォーマットについて](https://qiita.com/kunichiko/items/12cbccaadcbf41c72735)
 [AWS サービスの直接呼び出しの承認](https://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/authorizing-direct-aws.html)  
+[AWS GreengrassでLチカ：クラウドとエッジについて考える(1)](https://qiita.com/nobu_e753/items/4c0b0643f6d225daa067)
