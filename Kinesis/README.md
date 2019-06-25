@@ -20,4 +20,5 @@ PUT ペイロードユニット (25 KB)
 
 
 ## 参考
-[Amazon Kinesis Data Streams の料金](https://aws.amazon.com/jp/kinesis/data-streams/pricing/)
+[Amazon Kinesis Data Streams の料金](https://aws.amazon.com/jp/kinesis/data-streams/pricing/)  
+[AWS Kinesis Stream を大規模データで検証してわかったことの事例紹介](https://tech.atware.co.jp/aws-kinesis-stream-poc/)
