@@ -3,6 +3,29 @@
 ## 概要
 覚書である。順次記載予定。
 
+### 設定
+
+- credentials
+
+[{任意１}]
+aws_access_key_id = xxxxxxxx
+aws_secret_access_key = xxxxxxxx
+
+[{任意A}]
+source_profile = {任意１}
+role_arn = arn:aws:iam::{アカウントID}:role/{ロール名}
+
+- config
+
+[{任意A}]
+region = ap-northeast-1
+output = json
+
+[default]
+region = ap-northeast-1
+output = json
+
+
 
 ## 参考
 [サービス間の認証を API Gateway + IAM で行う](https://qiita.com/paper2/items/cea6021512132f070403)  
