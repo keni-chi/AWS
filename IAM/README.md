@@ -8,7 +8,7 @@
 {任意１}の自ユーザにて、アクセスキーを作成し、アクセスキーとシークレットキーをダウンロードする。  
 
 - console
-AWS_DEFAULT_PROFILE= {任意A}  
+export AWS_DEFAULT_PROFILE= {任意A}  
 
 - credentials
 
