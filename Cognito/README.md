@@ -1,4 +1,10 @@
-■Cognito
+# Cognito
+
+## 概要
+覚書である。順次記載予定。
+
+### 詳細
+
 プール ID
 ap-northeast-1_{xxxxxxx}
 プール
@@ -30,7 +36,3 @@ https://{xxxxx}.execute-api.ap-northeast-1.amazonaws.com/prod
 ■aclをcliで設定
 aws s3api put-bucket-acl --acl private --bucket {aaaa}
 aws s3api put-bucket-acl --acl public-read --bucket {aaaa}
-
-■proxy設定
-set HTTP_PROXY={xxxxx}
-set HTTPS_PROXY={xxxxx}
