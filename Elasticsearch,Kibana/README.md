@@ -1,36 +1,36 @@
 # Elasticsearch
 
-## ŠT—v
-uElasticSearch+Kibana‚É‚æ‚éŒ©‚¦‚é‰»vAu ElasticSearch‚Ö‚Ì‘‚«‚İ(python, ƒƒOƒc[ƒ‹)vAuTwitter‚©‚ç‚Ìƒf[ƒ^ûWv‚ğÀ{‚µ‚½B
-Twitter‚©‚ç‚Ìƒf[ƒ^ûW‚É‚Â‚¢‚Ä‚ÍAS3•Û‘¶‚à•Ê“rÀ{‚µ‚½Bi‚½‚µ‚©Twitter‚ÌAPI‚Å‚Í‰ß‹2TŠÔ‚­‚ç‚¢‚µ‚©ƒf[ƒ^æ“¾‚Å‚«‚È‚¢j
-logstash‚©fluentd‚Å‚Ç‚¿‚ç‚©‚Ü‚½‚Í—¼•û‚Å\’z‚µ‚Ä“®ì‚³‚¹‚½‚ªA–Y‚ê‚½B
+## æ¦‚è¦
+ã€ŒElasticSearch+Kibanaã«ã‚ˆã‚‹è¦‹ãˆã‚‹åŒ–ã€ã€ã€Œ ElasticSearchã¸ã®æ›¸ãè¾¼ã¿(python, ãƒ­ã‚°ãƒ„ãƒ¼ãƒ«)ã€ã€ã€ŒTwitterã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿åé›†ã€ã‚’å®Ÿæ–½ã—ãŸã€‚
+Twitterã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿åé›†ã«ã¤ã„ã¦ã¯ã€S3ä¿å­˜ã‚‚åˆ¥é€”å®Ÿæ–½ã—ãŸã€‚ï¼ˆãŸã—ã‹Twitterã®APIã§ã¯éå»2é€±é–“ãã‚‰ã„ã—ã‹ãƒ‡ãƒ¼ã‚¿å–å¾—ã§ããªã„ï¼‰
+logstashã‹fluentdã§ã©ã¡ã‚‰ã‹ã¾ãŸã¯ä¸¡æ–¹ã§æ§‹ç¯‰ã—ã¦å‹•ä½œã•ã›ãŸãŒã€å¿˜ã‚ŒãŸã€‚
 
 - Elasticsearch
 
-- EC2ã‚Åpython‚ÅÀs‚µAElasticsearch‚Öƒf[ƒ^•Û‘¶
+- EC2ä¸Šã§pythonã§å®Ÿè¡Œã—ã€Elasticsearchã¸ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 
-- logstash‚ğ—p‚¢‚½Twitterƒf[ƒ^‚ÌûW
+- logstashã‚’ç”¨ã„ãŸTwitterãƒ‡ãƒ¼ã‚¿ã®åé›†
 
-- Kibana‚ÅŒ©‚¦‚é‰»
+- Kibanaã§è¦‹ãˆã‚‹åŒ–
 
 - fluentd
 
-- ˆÈ‰º‚Ílogstashƒƒ‚B
+- ä»¥ä¸‹ã¯logstashãƒ¡ãƒ¢ã€‚
 
-¡EC2€”õ
-Eec2-user‚ÅƒŠƒ‚[ƒgƒƒOƒCƒ“
+â– EC2æº–å‚™
+ãƒ»ec2-userã§ãƒªãƒ¢ãƒ¼ãƒˆãƒ­ã‚°ã‚¤ãƒ³
 ssh -i mykey.pem ec2-user@[Public IP]
 
-Erootƒ†[ƒU‚É¸Ši
+ãƒ»rootãƒ¦ãƒ¼ã‚¶ã«æ˜‡æ ¼
 [ec2-user@ip-***-***-***-*** ~]$ sudo su -
 
-EƒpƒXƒ[ƒh•ÏX
+ãƒ»ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´
 [ec2-user@ip-***-***-***-*** ~]$ passwd
 Changing password for user root.
-New password: iƒpƒXƒ[ƒh“ü—Íj
+New password: ï¼ˆãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›ï¼‰
 [root@ip-***-***-***-*** ~]#
 
-¡ˆÈ‰º‹ï‘Ì“I‚È—¬‚êƒƒ‚
+â– ä»¥ä¸‹å…·ä½“çš„ãªæµã‚Œãƒ¡ãƒ¢
 sudo su
 yum update -y
 yum -y install java-1.8.0-openjdk-devel
@@ -65,7 +65,7 @@ yum install logstash -y
 /usr/share/logstash/bin/logstash --version
 /usr/share/logstash/bin/logstash-plugin install logstash-output-amazon_es
 
-¡ES\’z
+â– ESæ§‹ç¯‰
 mkdir logstas
 vi logstash.yml
 vi  /etc/logstas/logstash.yml
@@ -78,8 +78,8 @@ ES_EDP=https://search-movies-{xxxxx}.ap-northeast-1.es.amazonaws.com
 ES_REG=es:ap-northeast-1
 
 
-‘‚«‚İŒ ŒÀ‚Ì‚È‚¢ƒ†[ƒU‚Åƒtƒ@ƒCƒ‹‚ğ•ÒW‚µ‚Ä‚µ‚Ü‚Á‚½‚Æ‚« 
-Ql: http://jsapachehtml.hatenablog.com/entry/2014/11/23/124350
+æ›¸ãè¾¼ã¿æ¨©é™ã®ãªã„ãƒ¦ãƒ¼ã‚¶ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç·¨é›†ã—ã¦ã—ã¾ã£ãŸã¨ã 
+å‚è€ƒ: http://jsapachehtml.hatenablog.com/entry/2014/11/23/124350
 :w !sudo tee %
 
 
@@ -111,17 +111,17 @@ cat /etc/logstash/conf.d/twitter.conf
 
 /usr/share/logstash/bin/logstash --path.settings /etc/logstash -f /etc/logstash/conf.d/twitter.conf
 
-¡ƒuƒ‰ƒEƒU‚Åkibana‹N“®
-Index pattern‚ğ  .kibana ‚Éİ’è
-Time Filter field name ‚Í@@url.createDate@‚Éİ’è
+â– ãƒ–ãƒ©ã‚¦ã‚¶ã§kibanaèµ·å‹•
+Index patternã‚’  .kibana ã«è¨­å®š
+Time Filter field name ã¯ã€€ã€€url.createDateã€€ã«è¨­å®š
 
-¡ES\’zAƒZƒLƒ…ƒŠƒeƒBƒOƒ‹[ƒv‚ÅVPC“à‚È‚ç‚n‚j‚Ìİ’èŒãAˆÈ‰º‚ÅŠm”F
+â– ESæ§‹ç¯‰ã€ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚°ãƒ«ãƒ¼ãƒ—ã§VPCå†…ãªã‚‰ï¼¯ï¼«ã®è¨­å®šå¾Œã€ä»¥ä¸‹ã§ç¢ºèª
 dig +short arn:aws:es:ap-northeast-1:{account_id}:domain/practice01
 
 curl -XPUT https://search-movies-{xxxxx}.ap-northeast-1.es.amazonaws.com/movies/movie/1 -d '{"director": "Burton, Tim", "genre": ["Comedy","Sci-Fi"], "year": 1996, "actor": ["Jack Nicholson","Pierce Brosnan","Sarah Jessica Parker"], "title": "Mars Attacks!"}' -H 'Content-Type: application/json'
 curl -XGET 'https://search-movies-{xxxxx}.ap-northeast-1.es.amazonaws.com/movies/_search?q=mars'
 
-¡ƒAƒNƒZƒXƒ|ƒŠƒV[
+â– ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒªã‚·ãƒ¼
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -160,15 +160,15 @@ curl -XGET 'https://search-movies-{xxxxx}.ap-northeast-1.es.amazonaws.com/movies
 }
 
 
-- ˆÈ‰º‚Ífluentdƒƒ‚B
+- ä»¥ä¸‹ã¯fluentdãƒ¡ãƒ¢ã€‚
 
-¡Ql
+â– å‚è€ƒ
 http://blog.serverworks.co.jp/tech/2015/10/15/play-with-fluentd/
 https://qiita.com/Dalice/items/28a55c5f82481aebe04f
 http://www.k-staging.com/?p=1427
 https://qiita.com/Salinger/items/9d47ced748ff7191570a
 
-¡\’zƒƒ‚
+â– æ§‹ç¯‰ãƒ¡ãƒ¢
 sudo yum install httpd -y
 curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
 sudo chkconfig td-agent on
@@ -184,8 +184,8 @@ mkdir logpos
 sudo /etc/init.d/td-agent start
 sudo /etc/init.d/td-agent status
 
-sudo td-agent-gem install fluent-plugin-twitter@@#¸”s
-sudo /usr/sbin/td-agent-gem install fluent-plugin-s3@@#¸”s
+sudo td-agent-gem install fluent-plugin-twitterã€€ã€€#å¤±æ•—
+sudo /usr/sbin/td-agent-gem install fluent-plugin-s3ã€€ã€€#å¤±æ•—
 
 sudo yum -y install openssl-devel libcurl libcurl-devel gcc-c++
 sudo td-agent-gem install eventmachine
@@ -230,7 +230,7 @@ sudo /etc/init.d/td-agent start
 sudo /etc/init.d/td-agent stop
 tail /var/log/td-agent/td-agent.log
 
-¡söŒëHƒƒ‚
+â– è©¦è¡ŒéŒ¯èª¤ï¼Ÿãƒ¡ãƒ¢
 <source>
   type tail
   format apache2
@@ -278,7 +278,7 @@ tail /var/log/td-agent/td-agent.log
 </match>
 
 
-¡‚µ‚Î‚ç‚­‚µ‚Ä‚©‚ç
+â– ã—ã°ã‚‰ãã—ã¦ã‹ã‚‰
 sudo yum install httpd -y
 curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
 sudo chkconfig td-agent on
@@ -299,8 +299,8 @@ mkdir logpos
 
 sudo vi /etc/td-agent/td-agent.conf
 
-¡İ’è‚Í•Êƒtƒ@ƒCƒ‹QÆ
-ƒZƒLƒ…ƒŠƒeƒBƒOƒ‹[ƒv‚Åinbound‚Ì24224‚ğŠJ‚¯‚Ä‚¨‚­(TCP,UDP—¼•û)
+â– è¨­å®šã¯åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«å‚ç…§
+ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚°ãƒ«ãƒ¼ãƒ—ã§inboundã®24224ã‚’é–‹ã‘ã¦ãŠã(TCP,UDPä¸¡æ–¹)
 sudo /etc/init.d/td-agent start
 sudo /etc/init.d/td-agent status
 sudo /etc/init.d/td-agent stop
@@ -308,9 +308,9 @@ sudo /etc/init.d/td-agent restart
 
 tail /var/log/td-agent/td-agent.log
 
-‚±‚±‚Ü‚Å‚ÅS3•Û‘¶Š®—¹
+ã“ã“ã¾ã§ã§S3ä¿å­˜å®Œäº†
 
-¡‚»‚Ì‘¼ƒƒ‚
-ƒOƒ[ƒoƒ‹IP’²¸
+â– ãã®ä»–ãƒ¡ãƒ¢
+ã‚°ãƒ­ãƒ¼ãƒãƒ«IPèª¿æŸ»
 curl inet-ip.info
 sudo td-agent-gem install fluent-plugin-elasticsearch
