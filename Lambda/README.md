@@ -28,4 +28,5 @@
 | Kinesis Data Firehose                   |            |        | ○    |
   
 ## 参考   
-https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invoking-lambda-function.html
+https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invoking-lambda-function.html  
+[「AWS Lambda SnapStart」発表　AWS re:Invent 2022](https://www.itmedia.co.jp/news/articles/2211/30/news098.html)
